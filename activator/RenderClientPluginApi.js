@@ -1,10 +1,6 @@
 const { PluginApi } = require('@rispa/core')
 
-class RenderClientPluginApi extends PluginApi {
-  render(...props) {
-    return this.instance.render(...props)
-  }
-}
+class RenderClientPluginApi extends PluginApi {}
 
 RenderClientPluginApi.pluginName = '@rispa/render-client'
 

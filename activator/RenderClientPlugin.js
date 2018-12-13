@@ -1,9 +1,6 @@
 const createDebug = require('debug')
 const { PluginInstance } = require('@rispa/core')
-const WebpackPluginApi = require('@rispa/webpack')
-
-const clientWebpackConfig = require('./configs/client.wpc')
-const commonWebpackConfig = require('./configs/common.wpc')
+const ServerPluginApi = require('@rispa/server')
 
 const renderClient = require('../lib/client').default
 
@@ -12,14 +9,11 @@ const log = createDebug('rispa:info:render-server')
 class RenderClientPlugin extends PluginInstance {
   constructor(context) {
     super(context)
-    this.webpack = context.get(WebpackPluginApi.pluginName)
-
-    this.render = this.render.bind(this)
+    this.server = context.get(ServerPluginApi.pluginName)
   }
 
   start() {
-    this.webpack.addClientConfig(clientWebpackConfig)
-    this.webpack.addCommonConfig(commonWebpackConfig)
+    this.server.setClientRender(this.render)
   }
 
   render(assets) {
