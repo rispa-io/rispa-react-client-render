@@ -18,5 +18,16 @@
   "scripts": {
     "lint": "rispa-eslint .",
     "lint:fix": "rispa-eslint . --fix"
+  },
+  "babel": {
+    "presets": [
+      ["@rispa/babel/preset-app", {
+        "env": {
+          "targets": {
+            "node": "8.9.0"
+          }
+        }
+      }]
+    ]
   }
 }
