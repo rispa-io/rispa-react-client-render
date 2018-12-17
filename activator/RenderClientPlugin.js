@@ -1,27 +1,22 @@
-const createDebug = require('debug')
 const { PluginInstance } = require('@rispa/core')
 const ServerPluginApi = require('@rispa/server')
-
-const renderClient = require('../lib/client').default
-
-const log = createDebug('rispa:info:render-server')
+const ConfigPluginApi = require('@rispa/config').default
 
 class RenderClientPlugin extends PluginInstance {
   constructor(context) {
     super(context)
     this.server = context.get(ServerPluginApi.pluginName)
+    this.config = context.get(ConfigPluginApi.pluginName).getConfig()
+    this.render = this.render.bind(this)
   }
 
   start() {
     this.server.setClientRender(this.render)
   }
 
-  render(assets) {
-    return req => {
-      log(`request page '${req.originalUrl}'`)
-
-      return renderClient(req, { assets, log })
-    }
+  render(req, assets) {
+    const { html } = this.config
+    return html({ script: assets, title: 'Test' })
   }
 }
 

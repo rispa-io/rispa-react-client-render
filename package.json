@@ -2,25 +2,20 @@
   "name": "@rispa/render-client",
   "rispa:name": "render-client",
   "version": "4.0.0",
+  "license": "MIT",
   "description": "Rispa Client rendering plugin",
   "main": "./activator/RenderClientPluginApi.js",
   "rispa:activator": "./activator/index.js",
   "dependencies": {
-    "@rispa/babel": "4.2.x",
     "@rispa/core": "4.2.x",
     "@rispa/server": "4.2.x",
-    "babel-runtime": "^6.23.0",
-    "debug": "^2.6.6",
-    "prop-types": "^15.5.8",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "@rispa/config": "4.2.x",
+    "debug": "^2.6.6"
   },
   "devDependencies": {
-    "@rispa/eslint-config": ">=3.0.0",
-    "babel-cli": "^6.26.0"
+    "@rispa/eslint-config": ">=3.0.0"
   },
   "scripts": {
-    "compile": "babel src --out-dir lib --ignore spec.js,test.js",
     "lint": "rispa-eslint .",
     "lint:fix": "rispa-eslint . --fix"
   }
