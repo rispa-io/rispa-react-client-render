@@ -15,8 +15,8 @@ class RenderClientPlugin extends PluginInstance {
   }
 
   render(req, assets) {
-    const { html } = this.config
-    return html({ script: assets, title: 'Test' })
+    const { renderHtml } = this.config
+    return renderHtml(assets)
   }
 }
 
