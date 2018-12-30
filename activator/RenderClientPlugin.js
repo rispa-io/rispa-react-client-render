@@ -7,16 +7,17 @@ class RenderClientPlugin extends PluginInstance {
     super(context)
     this.server = context.get(ServerPluginApi.pluginName)
     this.config = context.get(ConfigPluginApi.pluginName).getConfig()
-    this.render = this.render.bind(this)
+
+    this.createRender = this.createRender.bind(this)
   }
 
   start() {
-    this.server.setClientRender(this.render)
+    this.server.setClientRender(this.createRender)
   }
 
-  render(req, assets) {
+  createRender() {
     const { renderHtml } = this.config
-    return renderHtml(assets)
+    return (req, assets) => renderHtml(assets, {})
   }
 }
 
